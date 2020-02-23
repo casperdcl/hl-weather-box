@@ -9,7 +9,7 @@ const {
   INPUT_UNITS: units
 } = process.env;
 
-const blocks = "░▁▂▃▄▅▆▇█";
+const blocks = " _▁▂▃▄▅▆▇█";
 const icons = {
   rain: "🌧",
   snow: "❄",
@@ -55,7 +55,8 @@ async function main() {
   let probStr = "";
   json.minutely.data.forEach(minute => {
     intensities.push(minute.precipIntensity);
-    probStr += blocks[Math.round(minute.precipProbability * blocks.length)];
+    probStr +=
+      blocks[Math.round(minute.precipProbability * (blocks.length - 1))];
   });
   const intensMax = Math.max(intensities) ? Math.max(intensities) : 1;
   let intenStr = "";
