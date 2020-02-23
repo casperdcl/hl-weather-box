@@ -63,14 +63,19 @@ async function main() {
   });
 
   let lines = [];
-  let { temperature, humidity, windSpeed} = json.currently;
+  let { temperature, humidity, windSpeed } = json.currently;
   temperature = Math.round(temperature * 10) / 10;
   humidity = Math.round(humidity * 100);
-  windSpeed = Math.round(windSpeed * 1.943844);  // knots
-  lines.push(`${temperature}C ${humidity}% ${windSpeed}kt|${json.minutely.summary}`);
+  windSpeed = Math.round(windSpeed * 1.943844); // knots
+  lines.push(
+    `${temperature}C ${humidity}% ${windSpeed}kt|${json.minutely.summary}`
+  );
   lines.push(probStr);
   lines.push(intenStr);
-  lines.push("https://darksky.net/poweredby/"); // Powered by Dark Sky
+  lines.push(
+    // Powered by Dark Sky
+    "https://github.com/casperdcl/hl-weather-box https://darksky.net/poweredby"
+  );
 
   console.log(lines.join("\n"));
 
