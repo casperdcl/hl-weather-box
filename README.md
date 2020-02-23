@@ -5,6 +5,10 @@ GitHub Action for injecting hyperlocal weather from Dark Sky into a gist.
 ---
 > 📌✨ For more pinned-gist projects like this one, check out: https://github.com/matchai/awesome-pinned-gists
 
+## ✨ Inspiration
+
+[Powered by Dark Sky](https://darksky.net/poweredby)
+
 ## 🎒 Prep Work
 1. Create a new public GitHub Gist (https://gist.github.com/)
 1. Create a token with the `gist` scope and copy it. (https://github.com/settings/tokens/new)

@@ -73,10 +73,6 @@ async function main() {
   );
   lines.push(probStr);
   lines.push(intenStr);
-  lines.push(
-    // Powered by Dark Sky
-    "https://github.com/casperdcl/hl-weather-box https://darksky.net/poweredby"
-  );
 
   console.log(lines.join("\n"));
 
