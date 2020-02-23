@@ -1,5 +1,5 @@
 const { Octokit } = require("@octokit/rest");
-const fetch = require("node-fetch");
+const { fetch } = require("node-fetch");
 
 const {
   INPUT_GIST_ID: gistID,
