@@ -63,10 +63,11 @@ async function main() {
   });
 
   let lines = [];
-  let { temperature, humidity } = json.currently;
+  let { temperature, humidity, windSpeed} = json.currently;
   temperature = Math.round(temperature * 10) / 10;
   humidity = Math.round(humidity * 100);
-  lines.push(`${temperature}C ${humidity}%|${json.minutely.summary}`);
+  windSpeed = Math.round(windSpeed * 1.943844);  // knots
+  lines.push(`${temperature}C ${humidity}% ${windSpeed}kt|${json.minutely.summary}`);
   lines.push(probStr);
   lines.push(intenStr);
   lines.push("https://darksky.net/poweredby/"); // Powered by Dark Sky
