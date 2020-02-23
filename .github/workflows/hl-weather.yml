@@ -1,0 +1,19 @@
+name: hl-weather-box
+on:
+  schedule:
+    - cron: '0/15 * * * *'  # quarter-hourly
+  push:
+    branches: master
+jobs:
+  hl-weather:
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v2
+     - run: npm install
+     - name: Update
+       uses: ./
+       with:
+          darksky_key: ${{ secrets.DARKSKY_KEY }}
+          location: ${{ secrets.LOCATION }}
+          gh_token: ${{ secrets.GH_TOKEN }}
+          gist_id: ${{ secrets.GIST_ID }}
