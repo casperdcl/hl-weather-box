@@ -49,7 +49,8 @@ async function main() {
   //   summary icon precipIntensity precipIntensityError precipProbability
   //   precipType temperature apparentTemperature dewPoint humidity pressure
   //   windSpeed windGust windBearing cloudCover uvIndex visibility ozone)
-  const icon = icons[json.minutely.icon.replace("-", "_")];
+  let icon = icons[json.minutely.icon.replace("-", "_")];
+  if (!icon) icon = icons.sun;
   let intensities = [];
   let probStr = "";
   json.minutely.data.forEach(minute => {
@@ -68,7 +69,7 @@ async function main() {
   humidity = Math.round(humidity * 100);
   windSpeed = Math.round(windSpeed * 1.943844); // knots
   lines.push(
-    `${temperature}C ${humidity}% ${windSpeed}kt|${json.minutely.summary}`
+    `${temperature}C ${humidity}% ${windSpeed}kt|${icon} ${json.minutely.summary}`
   );
   lines.push(probStr);
   lines.push(intenStr);
@@ -97,7 +98,7 @@ async function main() {
       gist_id: gistID,
       files: {
         [filename]: {
-          filename: `${icon ? icon : icons.sun} Hyperlocal Weather`,
+          filename: `${icon} Hyperlocal Weather`,
           content: lines.join("\n")
         }
       }
