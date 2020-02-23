@@ -1,6 +1,6 @@
 # 🌈 hl-weather-box
 
-Hyperlocal Weather updates to a gist
+GitHub Action for injecting hyperlocal weather from Dark Sky into a gist.
 
 ---
 > 📌✨ For more pinned-gist projects like this one, check out: https://github.com/matchai/awesome-pinned-gists
@@ -16,10 +16,10 @@ Hyperlocal Weather updates to a gist
 1. Go to your fork's `Settings` > `Secrets` > `Add a new secret` for each environment secret (below)
 
 ## 🤫 Environment Secrets
-- **GIST_ID:** The ID portion from your gist url `https://gist.github.com/<github username>/`**`6d5f84419863089a167387da62dd7081`**.
-- **GH_TOKEN:** The GitHub token generated above.
-- **DARKSKY_KEY:** The API secret key from Dark Sky from above.
-- **LOCATION:** latitude,longitude (e.g. **51.509865,-0.118092**).
+- **gist_id:** The ID portion from your gist url `https://gist.github.com/<github username>/`**`6d5f84419863089a167387da62dd7081`**.
+- **gh_token:** The GitHub token generated above.
+- **darksky_key:** The API secret key from Dark Sky from above.
+- **location:** latitude,longitude (e.g.: **51.509865,-0.118092**).
 
 ## 💸 Donations
 

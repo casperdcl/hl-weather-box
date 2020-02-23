@@ -1,7 +1,7 @@
 {
   "name": "hl-weather-box",
   "version": "1.0.0",
-  "description": "",
+  "description": "GitHub Action for injecting hyperlocal weather from Dark Sky into a gist",
   "main": "index.js",
   "scripts": {
     "test": "node -r dotenv/config ./index.js"
