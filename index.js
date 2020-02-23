@@ -9,6 +9,28 @@ const {
   INPUT_UNITS: units
 } = process.env;
 
+const icons = {
+  rain: "🌧",
+  snow: "❄",
+  sleet: "🌨",  // cloud snow
+  wind: "🌬",  // wind face
+  fog: "🌫",
+  cloudy: "☁",
+  clear_day: "🌣",
+  clear_night: "✨",  // sparkles
+  partly_cloudy_day: "🌥",
+  partly_cloudy_night: "●",  // black circle
+  // maybe unused
+  hail: "⛈",  // cloud thunder rain
+  thunderstorm: "🌩",
+  tornado: "🌪",
+  // unused
+  cloud_snow: "🌨",
+  cloud_sun_rain: "🌦",
+  cloud_thunder: "🌩",
+  cloud_thunder_rain: "⛈"
+};
+
 const API_BASE = 'https://api.darksky.net/forecast/';
 
 async function main() {
@@ -25,10 +47,11 @@ async function main() {
   const json = await fetch(API).then((data) => data.json());
   // console.debug(json);  // N.B.: contains private location
 
-  // TODO: use flags, offset, alerts, minutely.icon, currently.(
+  // TODO: use flags, offset, alerts, currently.(
   //   summary icon precipIntensity precipIntensityError precipProbability
   //   precipType temperature apparentTemperature dewPoint humidity pressure
   //   windSpeed windGust windBearing cloudCover uvIndex visibility ozone)
+  const icon = icons[json.minutely.icon.replace('-', '_')];
   let intensities = [];
   let probabilities = [];
   json.minutely.data.forEach((minute) => {
@@ -61,7 +84,7 @@ async function main() {
       gist_id: gistID,
       files: {
         [filename]: {
-          filename: `Hyperlocal Weather`,
+          filename: `${icon ? icon : icons.sun} Hyperlocal Weather`,
           content: lines.join("\n")
         }
       }
