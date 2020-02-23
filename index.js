@@ -9,6 +9,7 @@ const {
   INPUT_UNITS: units
 } = process.env;
 
+const blocks = "░▁▂▃▄▅▆▇█";
 const icons = {
   rain: "🌧",
   snow: "❄",
@@ -50,15 +51,24 @@ async function main() {
   //   windSpeed windGust windBearing cloudCover uvIndex visibility ozone)
   const icon = icons[json.minutely.icon.replace("-", "_")];
   let intensities = [];
-  let probabilities = [];
+  let probStr = "";
   json.minutely.data.forEach(minute => {
     intensities.push(minute.precipIntensity);
-    probabilities.push(minute.precipProbability);
+    probStr += blocks[Math.round(minute.precipProbability * blocks.length)];
+  });
+  const intensMax = Math.max(intensities) ? Math.max(intensities) : 1;
+  let intenStr = "";
+  intensities.forEach(i => {
+    intenStr += blocks[Math.round((i / intensMax) * blocks.length)];
   });
 
   let lines = [];
-  lines.push(json.minutely.summary);
-  lines.push("TODO: precipitation intensities & probabilities");
+  let { temperature, humidity } = json.currently;
+  temperature = Math.round(temperature * 10) / 10;
+  humidity = Math.round(humidity * 100);
+  lines.push(`${temperature}C ${humidity}%|${json.minutely.summary}`);
+  lines.push(probStr);
+  lines.push(intenStr);
   lines.push("https://darksky.net/poweredby/"); // Powered by Dark Sky
 
   console.log(lines.join("\n"));
