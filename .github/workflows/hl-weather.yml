@@ -1,7 +1,7 @@
 name: hl-weather-box
 on:
   schedule:
-    - cron: '0/2 * * * *'  # every 2 min
+    - cron: '*/2 * * * *'  # every 2 min
   push:
     branches: master
 jobs:
