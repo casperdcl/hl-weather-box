@@ -61,7 +61,7 @@ async function main() {
   const intensMax = Math.max(intensities) ? Math.max(intensities) : 1;
   let intenStr = "";
   intensities.forEach(i => {
-    intenStr += blocks[Math.round((i / intensMax) * blocks.length)];
+    intenStr += blocks[Math.round((i / intensMax) * (blocks.length - 1))];
   });
 
   let lines = [];
