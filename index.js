@@ -61,8 +61,8 @@ async function main() {
   //   summary icon precipIntensity precipIntensityError precipProbability
   //   precipType temperature apparentTemperature dewPoint humidity pressure
   //   windSpeed windGust windBearing cloudCover uvIndex visibility ozone)
-  let icon = icons[json.minutely.icon.replace("-", "_")];
-  if (!icon) icon = icons.sun;
+  let icon = icons[json.minutely.icon.split("-").join("_")];
+  if (!icon) icon = icons.clear_day;
   let intensities = [];
   let probabilities = [];
   let endTime = 0;
