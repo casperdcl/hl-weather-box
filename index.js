@@ -58,7 +58,8 @@ async function main() {
     probStr +=
       blocks[Math.round(minute.precipProbability * (blocks.length - 1))];
   });
-  const intensMax = Math.max(intensities) ? Math.max(intensities) : 1;
+  let intensMax = Math.max.apply(Math, intensities);
+  if (!intensMax) intensMax = 1;
   let intenStr = "";
   intensities.forEach(i => {
     intenStr += blocks[Math.round((i / intensMax) * (blocks.length - 1))];
