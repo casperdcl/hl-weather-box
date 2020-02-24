@@ -82,7 +82,7 @@ async function main() {
     probStr += blocks[Math.round(i * (blocks.length - 1))];
   });
   probStr += `|${endTime.getHours() % 12}:${endTime.getMinutes()}`;
-  let intenStr = `${Math.round(intensMax * 10) / 10}|`.padStart(3);
+  let intenStr = `${Math.round(intensMax * 10) / 10}|`.padStart(4);
   intensities.forEach(i => {
     intenStr += blocks[Math.round((i / intensMax) * (blocks.length - 1))];
   });
