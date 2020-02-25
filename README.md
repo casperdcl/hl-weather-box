@@ -1,3 +1,9 @@
+```
+5.6C 74% 12kt|🌧 Possible drizzle stopping in 4 min.
+Prb|▇▄▁_                       ___|6:13
+0.3|▆▄▃▃▃▁                  ▃▄▄▅▆█|
+```
+
 # 🌈 hl-weather-box
 
 GitHub Action for injecting hyperlocal weather from Dark Sky into a gist.
