@@ -6,6 +6,7 @@ const {
   INPUT_GH_TOKEN: ghToken,
   INPUT_DARKSKY_KEY: dSKey,
   INPUT_LOCATION: loc,
+  INPUT_LOCATION2: loc2,
   INPUT_UNITS: units
 } = process.env;
 

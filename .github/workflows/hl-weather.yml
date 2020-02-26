@@ -15,5 +15,6 @@ jobs:
        with:
           darksky_key: ${{ secrets.darksky_key }}
           location: ${{ secrets.location }}
+          location2: ${{ secrets.location2 }}
           gh_token: ${{ secrets.gh_token }}
           gist_id: ${{ secrets.gist_id }}
