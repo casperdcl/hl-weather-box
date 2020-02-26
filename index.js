@@ -82,12 +82,11 @@ async function main() {
     probStr += blocks[Math.round(i * (blocks.length - 1))];
   });
   probStr += `|${endTime.getHours() % 12}:${endTime.getMinutes()}`;
-  let intenStr = `${Math.round((intensMax ? intensMax : 0) * 10) /
-    10}|`.padStart(4);
+  let intenStr = "Amt|";
   intensities.forEach(i => {
     intenStr += blocks[Math.round((i / intensMax) * (blocks.length - 1))];
   });
-  intenStr += "|";
+  intenStr += `|${Math.round((intensMax ? intensMax : 0) * 10) / 10}mm/h`;
 
   let lines = [];
   let { temperature, humidity, windSpeed } = json.currently;
