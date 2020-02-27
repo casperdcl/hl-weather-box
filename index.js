@@ -75,8 +75,8 @@ async function main() {
   probabilities = block_reduce_average(probabilities, 2);
   intensities = block_reduce_average(intensities, 2);
 
-  let intensMax = Math.max.apply(Math, intensities);
-  if (!intensMax) intensMax = 1;
+  const intensMax = Math.max.apply(Math, intensities);
+  const intensScl = 1.0 / (intensMax ? intensMax : 1);
   let probStr = "Prb|";
   probabilities.forEach(i => {
     probStr += blocks[Math.round(i * (blocks.length - 1))];
@@ -84,9 +84,9 @@ async function main() {
   probStr += `|${endTime.getHours() % 12}:${endTime.getMinutes()}`;
   let intenStr = "Amt|";
   intensities.forEach(i => {
-    intenStr += blocks[Math.round((i / intensMax) * (blocks.length - 1))];
+    intenStr += blocks[Math.round(i * intensScl * (blocks.length - 1))];
   });
-  intenStr += `|${Math.round((intensMax ? intensMax : 0) * 10) / 10}mm/h`;
+  intenStr += `|${Math.round(intensMax * 10) / 10}mm/h`;
 
   let lines = [];
   let { temperature, humidity, windSpeed } = json.currently;
