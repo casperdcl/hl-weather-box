@@ -104,7 +104,7 @@ async function get_data(loc) {
   lines.push(probStr);
   lines.push(intenStr);
 
-  return [icon, lines];
+  return { icon, lines };
 }
 
 async function main() {
@@ -113,10 +113,10 @@ async function main() {
       "Must supply INPUT_(GIST_ID,GH_TOKEN,DARKSKY_KEY,LOCATION)."
     );
 
-  let [icon, lines] = await get_data(loc);
+  let { icon, lines } = await get_data(loc);
   console.log(lines.join("\n"));
   if (loc2) {
-    const lines2 = (await get_data(loc2))[1];
+    const { lines: lines2 } = await get_data(loc2);
     console.log(lines2.join("\n"));
     Array.prototype.push.apply(lines, lines2); // in-place concat
   }
