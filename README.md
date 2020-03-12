@@ -30,6 +30,7 @@ GitHub Action for injecting hyperlocal weather from Dark Sky into a gist.
 - **gh_token:** The GitHub token generated above.
 - **darksky_key:** The API secret key from Dark Sky from above.
 - **location:** latitude,longitude (e.g.: **51.509865,-0.118092**).
+- **location2:** Optional second location.
 
 ## 💸 Donations
 

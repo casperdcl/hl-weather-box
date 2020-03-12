@@ -6,6 +6,7 @@ const {
   INPUT_GH_TOKEN: ghToken,
   INPUT_DARKSKY_KEY: dSKey,
   INPUT_LOCATION: loc,
+  INPUT_LOCATION2: loc2,
   INPUT_UNITS: units
 } = process.env;
 
@@ -46,11 +47,15 @@ function block_reduce_average(array, elems = 2) {
   return block_reduce_sum(array, elems).map(i => i / elems);
 }
 
-async function main() {
-  if (!gistID || !ghToken || !dSKey || !loc)
-    throw new Error(
-      "Must supply INPUT_(GIST_ID,GH_TOKEN,DARKSKY_KEY,LOCATION)."
-    );
+/**
+ * returns [<icon>, <description>] for given `loc`.
+ * <icon>  : string
+ * <description>  : list[string]:
+ *   <temp> <humid> <wind>|<icon> <summary>
+ *   Prb|<precip probability   graph>|<end time>
+ *   Amt|<precip amount (rate) graph>|<max rate>
+ */
+async function get_data(loc) {
   const u = units ? units : "si";
   const API = `${API_BASE}${dSKey}/${loc}?units=${u}&exclude=hourly,daily`;
 
@@ -99,7 +104,22 @@ async function main() {
   lines.push(probStr);
   lines.push(intenStr);
 
+  return { icon, lines };
+}
+
+async function main() {
+  if (!gistID || !ghToken || !dSKey || !loc)
+    throw new Error(
+      "Must supply INPUT_(GIST_ID,GH_TOKEN,DARKSKY_KEY,LOCATION)."
+    );
+
+  let { icon, lines } = await get_data(loc);
   console.log(lines.join("\n"));
+  if (loc2) {
+    const { lines: lines2 } = await get_data(loc2);
+    console.log(lines2.join("\n"));
+    Array.prototype.push.apply(lines, lines2); // in-place concat
+  }
 
   const octokit = new Octokit({
     auth: `token ${ghToken}`
